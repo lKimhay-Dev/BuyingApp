@@ -1,0 +1,49 @@
+
+<ion-header>
+  <ion-toolbar>
+ 
+      <ion-title> 
+        <ion-row>
+          <ion-button [routerLink]="['/home/retailer']" btn_width fill="clear" shape="round">
+            <ion-icon slot="icon-only" class="arow-back" name="arrow-back-outline"></ion-icon>
+          </ion-button>
+          <ion-input type="text" placeholder="검색"></ion-input>
+        </ion-row>
+      </ion-title>
+      
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <!-- <ion-label class="ion-text-start font_size  ion-no-margin ion-no-padding">
+        <span text_underline>{{retail.retailer_name}}</span>  
+        <span>&nbsp;/&nbsp;{{retail.depositors_id}}</span> 
+        <p>
+          <span text_color>소매업채명</span>
+          <span>&nbsp;{{retail.buying_fee}}명</span> 
+          <span text_color> &nbsp;(소매업채명)</span>  
+        </p>
+      </ion-label> -->
+
+      <ion-label class="ion-text-start font_size  ion-no-margin ion-no-padding">
+        <span text_underline>New</span>  
+        <span>&nbsp;/&nbsp;Test</span> 
+        <p>
+          <span text_color>소매업채명</span>
+          <span>&nbsp;Test명</span> 
+          <span text_color> &nbsp;(소매업채명)</span>  
+        </p>
+      </ion-label>
+      <ion-label class="ion-text-end flex_none">
+        <ion-icon name="call-sharp"></ion-icon>
+         <ion-icon></ion-icon>
+        <ion-icon name="location-sharp" text_color></ion-icon>
+      </ion-label>
+    </ion-item>
+    
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,28 @@
+
+<ion-content>
+  <form [formGroup]="buyingfeeForm" (ngSubmit)="onFormSubmit()">
+    <ion-row>
+      <ion-title class="purc-label_">기본 사입비를 입력해 주세요.</ion-title>
+    </ion-row>
+
+    <ion-row>
+      <ion-label class="purc-label">사입비(기본)</ion-label>
+    </ion-row>
+
+    <ion-item>
+      <ion-label class="size" slot="end">원</ion-label>
+      <ion-input placeholder="사입비" type="number"></ion-input>
+      <ion-input formControlName="create_date" type="text" hidden></ion-input>
+    </ion-item>
+    <ion-row class="detail">
+      <ion-label>기본 사입비 변경은 </ion-label>
+      <ion-label class="note">전체메뉴>기본 사입비 변경</ion-label>
+      <ion-label>탭에서 하실 수 있습니다.</ion-label>
+    </ion-row>
+    <ion-toolbar>
+      <ion-button type="submit" class="cus-round" color="primary" expand="block" fill="solid">
+        다음
+      </ion-button>
+    </ion-toolbar>
+  </form>
+</ion-content>

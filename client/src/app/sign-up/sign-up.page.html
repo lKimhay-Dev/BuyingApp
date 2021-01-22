@@ -1,0 +1,48 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-row>
+      <ion-button [routerLink]="['/']" expand="block" fill="clear" shape="round">
+        <ion-img  class="size_icon" src="./assets/img/icon_back.png"></ion-img>
+      </ion-button>
+      <ion-title class="txt">회원가입</ion-title>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+ 
+    <ion-title class="P__">
+      <ion-col>
+        <ion-router-link href="#" color__>아래내용에 동의해주세요.</ion-router-link> 
+      </ion-col>
+    </ion-title>
+      
+    <ion-title class="test">
+      <h6 class="ion-no-padding ion-no-margin size ">원활한 서비서 제공을 위해 이용약관 등의 내용에</h6>
+      <h6 class="ion-no-padding ion-no-margin size">동의해주세요.</h6>
+    </ion-title>
+    
+  <ion-list>
+    <ion-item>
+      <ion-label>모두 동의합니다</ion-label>
+      <ion-checkbox slot="start"
+      class="txb"
+      [(ngModel)]="masterCheck"
+      [indeterminate]="isIndeterminate"
+        (click)="checkMaster($event)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let item of checkBoxList">
+      <ion-label><span class="underline" class="size-lable">{{item.value}} </span><span class="note" *ngIf="item.required">(필수)</span></ion-label>
+      <ion-checkbox slot="start" 
+      class="txb"
+      [(ngModel)]="item.isChecked" 
+      (ionChange)="checkEvent()"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  
+  <ion-button class="btn" (click)="next()" expand="block" [disabled]="!agreements">다음</ion-button>
+
+</ion-content>
+
+

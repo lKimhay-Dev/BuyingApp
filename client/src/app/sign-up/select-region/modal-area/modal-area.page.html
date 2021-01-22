@@ -1,0 +1,32 @@
+
+
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-row>
+      <ion-button (click)="closeModal()" expand="block" fill="clear" shape="round">
+        <ion-img  class="controler" src="./assets/img/icon_back.png" ></ion-img>
+      </ion-button>
+      <ion-title class="txt">주 사입 지역 선택</ion-title>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-radio-group>
+     
+      <ion-item >
+        <ion-radio class="index" value="등록순" slot="start"></ion-radio>
+        <ion-label class="index_">등록순</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-radio class="index"  value="오름차순" slot="start"></ion-radio>
+        <ion-label class="index_">오름차순</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-radio class="index"  value="내림차순" slot="start"></ion-radio>
+        <ion-label class="index_">내림차순</ion-label>
+      </ion-item>     
+    </ion-radio-group>
+  </ion-list>

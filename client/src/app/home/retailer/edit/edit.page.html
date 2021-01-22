@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-button [routerLink]="['/home/retailer']" expand="block" fill="clear" shape="round">
+        <ion-icon slot="icon-only" class="arow-back" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-title>소매 편집</ion-title>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>존스노우</ion-label>
+    <ion-checkbox color="primary" (click)="openModal()" [(ngModel)]="checked" slot="start"></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label>Valock</ion-label>
+    <ion-checkbox color="primary" slot="start"></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label>Assassin</ion-label>
+    <ion-checkbox color="primary" slot="start"></ion-checkbox>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button class="cus-round" (click)="presentAlertConfirm()" color="danger" expand="block" fill="outline">
+      편집하다
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-button [routerLink]="['/']" expand="block" fill="clear" shape="round">
+        <ion-icon slot="icon-only"class="arow-back" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-title>기본 사입비 변경</ion-title>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-row>
+      <ion-label class="purc-label">사입비(기본)</ion-label>
+    </ion-row>
+
+    <ion-item>
+      <ion-label slot="end">원</ion-label>
+      <ion-input placeholder="사입비" [(ngModel)]="data.buying_fee" (keypress)="modifyFee()" type="number"></ion-input>
+    </ion-item>
+
+    <ion-row class="dateOfChange">
+      <ion-label>변경일자:</ion-label>
+      <ion-label class="date"> {{data.update_date | date:'yyyy.MM.dd'}} </ion-label>
+    </ion-row>
+    
+    <ion-row class="detail">
+      <ion-label>기본 사입비로 </ion-label>
+      <ion-label class="note">지정된 소매처</ion-label>
+      <ion-label>만 병경됩니다.</ion-label>
+    </ion-row>
+
+    <ion-toolbar>
+      <ion-button (click)="updateForm()" class="cus-round" color="primary" expand="block" fill="solid">
+        변경하기
+      </ion-button>
+    </ion-toolbar>
+
+</ion-content>
+
