@@ -1,5 +1,5 @@
 import { Component, ElementRef, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { postcode } from 'src/assets/js/postcode.js';
 
 @Component({
@@ -9,17 +9,24 @@ import { postcode } from 'src/assets/js/postcode.js';
 })
 export class SearchLocationPage implements OnInit {
 
+  fee;
+
   @ViewChild('daum_popup', { read: ElementRef, static: true }) popup: ElementRef;
 
   constructor(private renderer: Renderer2,
               private router: Router, 
+              private route: ActivatedRoute,
               private ngZone: NgZone) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.fee = params["fee"]
+    });
     postcode(this.renderer, this.popup.nativeElement, data => this.ngZone.run(() => {
       let navigationExtras: NavigationExtras = {
         state: {
-          data: data.address
+          data: data.address,
+          fee: this.fee
         }
       };
       this.router.navigate(['/register-retailer'],navigationExtras);

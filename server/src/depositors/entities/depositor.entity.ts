@@ -5,7 +5,7 @@ export type DepositorDocument = Depositor & Document;
 @Schema()
 export class Depositor {
 
-    @Prop({ required: true })
+    @Prop()
     name: string;
     
 }

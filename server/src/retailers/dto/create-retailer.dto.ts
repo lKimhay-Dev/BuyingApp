@@ -8,5 +8,5 @@ export class CreateRetailerDto {
     buying_fee: number;
     depositors: Depositor[]; 
     user: User;
-
+    create_date: Date;
 }

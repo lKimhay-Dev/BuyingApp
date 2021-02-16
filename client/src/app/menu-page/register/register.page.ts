@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { async } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { UserDto } from 'src/app/Dto/user.Dto';
+import { UserService } from 'src/app/service/user/user.service';
 
 @Component({
   selector: 'app-register',
@@ -10,8 +13,13 @@ import { AlertController } from '@ionic/angular';
 export class RegisterPage implements OnInit {
 
   isAgree: boolean;
+  user: UserDto;
 
-  constructor(public alertController: AlertController) { }
+  constructor(
+    private router: Router,
+    public alertController: AlertController,
+    private userService: UserService
+  ) { }
 
   ngOnInit() { }
 
@@ -36,9 +44,16 @@ export class RegisterPage implements OnInit {
         }, {
           text: 'Agree',
           handler: () => {
-            console.log('Confirm to Delete Account');
+            let id = JSON.parse(localStorage.getItem('userData')).uid;
+            console.log(id);
+            
+            this.userService.deActiveUser(id).subscribe((res) => {
+            console.log('Account Deleted!');
             localStorage.removeItem('userData');
-            window.location.href = '/home';
+            localStorage.setItem('isLogin', 'false');
+            window.location.href = '/login';
+            });
+            
           }
         }
       ]

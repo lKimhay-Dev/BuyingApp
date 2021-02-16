@@ -16,38 +16,32 @@
         <ion-item>
           <ion-label position="floating">
             <ion-icon  name="newspaper-outline"></ion-icon>소매업채명 <ion-text color="warning">(필수)</ion-text> </ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text" [(ngModel)]="data.retailer_name" name="retailer_name"></ion-input>
         </ion-item>
 
         <ion-item >
           <ion-label position="floating">
             <ion-icon name="phone-portrait-outline"></ion-icon>전화번호<ion-text color="warning">(필수)</ion-text></ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text" [(ngModel)]="data.phone_number" name="phone_number"></ion-input>
         </ion-item>
 
         <ion-item >
           <ion-label position="floating">
             <ion-icon name="location-outline"></ion-icon>주소<ion-text color="warning">(필수)</ion-text>
           </ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text" [(ngModel)]="data.address_ko" name="address"></ion-input>
           <ion-button class="btn" (click)="goSearchLocate()" color="light" slot="end">주소 검색</ion-button>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating">
             <ion-icon name="person-outline"></ion-icon>입륵자명</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text" id="child0" name="name"></ion-input>
+          <!-- <ion-input type="text" [(ngModel)]="depo.name" name="name"></ion-input> -->
         </ion-item>
 
-  
         <div id="showInputField">
-        <ion-item>
-          <ion-label position="floating">
-            <ion-icon name="person-outline"></ion-icon>입륵자명</ion-label>
-          <ion-input type="text"></ion-input>
-        </ion-item>
       </div>
-        
 
         <ion-item>
           <ion-icon name="add-outline" (click)="addDepositor()"></ion-icon>
@@ -59,17 +53,19 @@
         </ion-item>
 
         <ion-item>
-          <ion-label>사입비</ion-label>
+          <ion-label class="lable-size ">사입비</ion-label>
           <ion-icon name="remove-outline" (click)="decrement()"></ion-icon>
-          <p class="ion-padding" >{{ number }} 원</p>
+          <p class="ion-padding" >{{ fee }} 원</p>
           <ion-icon name="add-outline" (click)="increment()"></ion-icon>
           <ion-label class="ion-text-end">기본</ion-label>
           
         </ion-item>
-        <ion-input type="hidden" value="{{ number }}"></ion-input>
+        <ion-input type="hidden" value="{{ fee }}" [(ngModel)]="data.buying_fee" name="buying_fee"></ion-input>
 
-        <ion-button type="submit" expand="block">시작하기</ion-button>
+        <ion-button class="btn-size" (click)="addRetailHandler()" expand="block" >시작하기</ion-button>
+
       </form>
+
 
     </ion-list>
 

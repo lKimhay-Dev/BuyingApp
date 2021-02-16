@@ -8,11 +8,22 @@ import { Model } from 'mongoose';
 @Injectable()
 export class DepositorsService {
 
-  constructor(@InjectModel(Depositor.name) private readonly depoModel:Model<DepositorDocument>){}
+  constructor(@InjectModel(Depositor.name) private depoModel:Model<DepositorDocument>){}
 
   async create(createDepositorDto: CreateDepositorDto):Promise<Depositor> {
     const addnew =new this.depoModel(createDepositorDto);
     return await addnew.save();
+    
+  }
+
+  async createMulti(createRetailerDto: CreateDepositorDto[]) {
+    return this.depoModel.create(createRetailerDto)
+  }
+
+  async createMany(createDepositorDto: CreateDepositorDto):Promise<Depositor> {
+
+    return this.depoModel.insertMany(createDepositorDto);
+
   }
 
   async findAll():Promise<Depositor[]> {
@@ -24,8 +35,8 @@ export class DepositorsService {
 
   }
 
-  async update(id: string, updateDepositorDto: UpdateDepositorDto) {
-    return this.depoModel.updateOne({_id:id},updateDepositorDto,{new:true});
+  async update(id: string, updateDepositorDto: UpdateDepositorDto):Promise<Depositor> {
+    return this.depoModel.updateOne({_id:id},updateDepositorDto);
   }
 
   async remove(id: string):Promise<Depositor> {

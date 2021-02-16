@@ -8,8 +8,8 @@ export class DepositorsController {
   constructor(private readonly depositorsService: DepositorsService) {}
 
   @Post()
-  create(@Body() createDepositorDto: CreateDepositorDto) {
-    return this.depositorsService.create(createDepositorDto);
+  create(@Body() createDepositorDto: CreateDepositorDto[]) {
+    return this.depositorsService.createMulti(createDepositorDto);
   }
 
   @Get()

@@ -3,37 +3,61 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Model } from 'mongoose';
-import { User, UserDocument } from './entities/user.entity';
+// import { User, UserDocument } from './entities/user.entity';
+
+export type Userss = any;
 
 @Injectable()
 export class UsersService {
 
-  constructor(@InjectModel('User') private readonly userModel:Model<UserDocument>){}
+  private readonly users = [
+    {
+      userId: 1,
+      username: 'john',
+      password: 'changeme',
+    },
+    {
+      userId: 2,
+      username: 'maria',
+      password: 'guess',
+    },
+  ];
 
-  async create(createUserDto: CreateUserDto):Promise<User> {
-    const addnew =new this.userModel(createUserDto);
-    return await addnew.save();
+  async findOne(username: string): Promise<Userss | undefined> {
+    return this.users.find(user => user.username === username);
   }
 
-  async findAll():Promise<User[]> {
-    return await this.userModel
-    .find()
-    .populate(['buying_area_id','delivery_area_id'])
-    .exec();
-  }
+  // constructor(@InjectModel('User') private readonly userModel: Model<UserDocument>) { }
 
-  async findOne(id: string):Promise<User> {
-    return await this.userModel.
-    findById(id)
-    .populate(['buying_area_id','delivery_area_id'])
-    .exec();
-  }
+  // async create(createUserDto: CreateUserDto): Promise<User> {
+  //   const addnew = new this.userModel(createUserDto);
+  //   return await addnew.save();
+  // }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
-    return this.userModel.updateOne({_id:id},updateUserDto,{new:true});
-  }
+  // async findAll(): Promise<User[]> {
+  //   return await this.userModel
+  //     // .find()
+  //     .find().where('is_active').equals(true)
+  //     .populate(['buying_area_id', 'delivery_area_id'])
+  //     .exec();
+  // }
 
-  async remove(id: string):Promise<User> {
-    return this.userModel.deleteOne({_id:id});
-  }
+  // async findOne(id: string): Promise<User> {
+  //   return await this.userModel.
+  //     findById(id)
+  //     .populate(['buying_area_id', 'delivery_area_id'])
+  //     .exec();
+  // }
+
+  // async update(id: string, updateUserDto: UpdateUserDto) {
+  //   return this.userModel.updateOne({ _id: id }, updateUserDto, { new: true });
+  // }
+
+  // async deActive(id: string) {
+  //   return this.userModel.updateOne({ _id: id }, { is_active: false });
+  // }
+
+  // async remove(id: string): Promise<User> {
+  //   return this.userModel.deleteOne({ _id: id });
+  // }
 }

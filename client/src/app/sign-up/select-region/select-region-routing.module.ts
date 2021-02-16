@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'modal-area',
     loadChildren: () => import('./modal-area/modal-area.module').then( m => m.ModalAreaPageModule)
+  },
+  {
+    path: 'modal-deliver-area',
+    loadChildren: () => import('./modal-deliver-area/modal-deliver-area.module').then( m => m.ModalDeliverAreaPageModule)
   }
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { BuyingAreaService } from 'src/app/service/buying-area/buying-area.service';
 
 @Component({
   selector: 'app-modal-area',
@@ -10,26 +11,20 @@ export class ModalAreaPage implements OnInit {
 
   stateBuyArea: any;
 
-  constructor(private modalController: ModalController) 
-  { 
-    // this.stateBuyArea = [
-    //   {
-    //     value:"등록순",
-    //     required:true,
-    //     isChecked:false
-    //   },{
-    //     value:"오름차순",
-    //     required:true,
-    //     isChecked:false
-    //   },{
-    //     value:"내림차순",
-    //     required:true,
-    //     isChecked:false
-    //   }
-    // ];
-  }
+  constructor(
+    private modalController: ModalController,
+    private buyingAreaService: BuyingAreaService
+  ) { }
 
   ngOnInit() {
+    this.buyingAreaService.getBuyingArea().subscribe(res => {
+      this.stateBuyArea = res;
+    })
+  }
+
+  selectArea(event) {
+    // console.log(event.target.value);
+    this.modalController.dismiss(event.target.value);
   }
 
   closeModal() {

@@ -4,15 +4,42 @@
 }
 ion-title.info{
     font-size: 18px;
-    font-weight:bold;
-    color: rgb(72, 72, 241);
+    font-weight: bold;
+    color: #4848f1;
+    width: 234px;
+    height: 27px;
+    letter-spacing: -0.36px;
 }
 ion-label.info{
     font-size: 14px;
-    color: rgb(72, 72, 241);
+    color: #4848f1;
+    letter-spacing: -0.28px;
+    width: 255px;
+    height: 21px;
 }
 .btn{
-    margin-top: 12px;
     height: 35px;
     width: 100px;
+    letter-spacing: -0.28px;
+    font-size: 14px;
+    width: 103px;
+    height: 48px;
+}
+.btn-size{
+    margin-top: 16em;
+    letter-spacing: -0.28px;
+    font-size: 14px;
+    height: 48px;
+}
+.lable-size{
+    font-size: 16px;
+    letter-spacing: -0.32px;
+    width: 44px;
+    height: 24px;
+}
+.txtsize{
+    font-size: 14px;
+    letter-spacing: -0.28px;
+    width: 26px;
+    height: 21px;
 }

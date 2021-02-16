@@ -53,6 +53,10 @@ const routes: Routes = [
     loadChildren: () => import('./retailer/edit/edit.module').then( m => m.EditPageModule)
   },
   {
+    path: 'home/retailer/detail',
+    loadChildren: () => import('./retailer/detail/detail.module').then( m => m.DetailPageModule)
+  },
+  {
     path: 'buying-basic-fee',
     loadChildren: () => import('./buying-basic-fee/buying-basic-fee.module').then( m => m.BuyingBasicFeePageModule)
   }

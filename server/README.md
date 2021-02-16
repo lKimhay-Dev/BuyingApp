@@ -32,6 +32,32 @@
 $ npm install
 ```
 
+Install the Nest CLI with npm:
+
+```sh
+$ npm i -g @nestjs/cli
+```
+
+### Install Swagger(test API)
+
+To begin using it, we first install the required dependencies.
+
+```sh
+$ npm install --save @nestjs/swagger swagger-ui-express
+```
+
+Now you can run the following command to start the HTTP server:
+
+```
+$ npm run start
+```
+
+While the application is running, open your browser and navigate to http://localhost:3000/api. You should see the Swagger UI.
+
+```
+http://localhost:3000/api/
+```
+
 ## Running the app
 
 ```bash
@@ -56,7 +82,9 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+
 ```
+
 
 ## Support
 
@@ -71,3 +99,4 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+

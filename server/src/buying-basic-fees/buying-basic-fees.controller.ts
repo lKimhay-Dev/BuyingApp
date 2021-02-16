@@ -19,7 +19,7 @@ export class BuyingBasicFeesController {
 
   @Get()
   findOne() {
-    return this.buyingBasicFeesService.findOne();
+    return this.buyingBasicFeesService.findAll();
   }
 
   @Put(':id')

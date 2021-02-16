@@ -1,20 +1,24 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.page.html',
   styleUrls: ['./sign-up.page.scss'],
 })
-export class SignUpPage{
+export class SignUpPage implements OnInit {
 
   isIndeterminate:boolean;
   masterCheck:boolean;
   checkBoxList:any;
   agreements:boolean;
 
+  user: any;
+
   constructor(
-    private router: Router,
+    private route: ActivatedRoute,
+    public navCtrl: NavController
   ){
     this.checkBoxList = [
       {
@@ -35,6 +39,12 @@ export class SignUpPage{
         isChecked:false
       }
     ];
+  }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.user = JSON.parse(params["user"]);
+    });
   }
 
   checkMaster() {
@@ -73,7 +83,12 @@ export class SignUpPage{
   }
 
   next(){
-    this.router.navigate(['/sign-up/select-region']);
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          user: JSON.stringify(this.user)
+      }
+    };
+    this.navCtrl.navigateForward(['sign-up/select-region'], navigationExtras);
   }
 
 }

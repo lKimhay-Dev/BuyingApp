@@ -11,4 +11,5 @@ export class UpdateRetailerDto extends PartialType(CreateRetailerDto) {
     buying_fee: number;
     depositors: Depositor[]; 
     user: User;
+    update_date: Date;
 }

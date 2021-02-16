@@ -8,7 +8,7 @@ export class RetailersController {
   constructor(private readonly retailersService: RetailersService) {}
 
   @Post()
-  create(@Body() createRetailerDto: CreateRetailerDto) {
+  create(@Body() createRetailerDto: CreateRetailerDto) { 
     return this.retailersService.create(createRetailerDto);
   }
 
@@ -25,6 +25,11 @@ export class RetailersController {
   @Put(':id')
   update(@Param('id') id: string, @Body() updateRetailerDto: UpdateRetailerDto) {
     return this.retailersService.update(id, updateRetailerDto);
+  }
+
+  @Put('de-active/:id')
+  deActivate(@Param('id') id: string) {
+    return this.retailersService.deActivate(id);
   }
 
   @Delete(':id')

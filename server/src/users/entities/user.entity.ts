@@ -19,7 +19,10 @@ export class User {
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'DeliveryArea' })
     delivery_area_id: DeliveryArea;
-        
+
+    @Prop({ type: Boolean, default: true })
+    is_active: boolean;
+
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  api: 'http://175.100.18.238:3001/',
   firebaseConfig: {
     apiKey: "AIzaSyDeJNVMQgX-sp2-U1mLjqZZrvdtrZBVvLc",
     authDomain: "sociallogin-301704.firebaseapp.com",

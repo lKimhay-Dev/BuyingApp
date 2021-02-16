@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { MenuController,NavController } from '@ionic/angular';
 
@@ -21,7 +22,10 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     // Get user data from Local Storage
-    const localData = JSON.parse(localStorage.getItem('userData'));
+    const localData = JSON.parse(JSON.parse(localStorage.getItem('userData')));
+    
+    // If user not login, go to login
+    if(localData == null) this.navCtrl.navigateRoot('/login');
     
     // If localData is no data then get default
     this.profile = localData != null ? 
@@ -39,9 +43,6 @@ export class HomePage implements OnInit {
   }
   closeMenu(){
     this.menu.close();
-  }
-  backToHome(){
-    this.navCtrl.navigateRoot('/home');
   }
 
 }

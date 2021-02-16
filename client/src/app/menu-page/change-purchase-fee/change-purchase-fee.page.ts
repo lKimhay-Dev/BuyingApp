@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BuyingBasicFeeService } from '../../service/buying-basic-fee.service';
+import { BuyingBasicFeeService } from '../../service/buying-basic-fee/buying-basic-fee.service';
 import { BuyingBasicFeeDto } from '../../Dto/buyingBasicFee.Dto';
  
 

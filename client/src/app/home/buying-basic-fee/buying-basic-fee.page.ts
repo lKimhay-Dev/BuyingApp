@@ -1,7 +1,10 @@
 import { formatDate } from "@angular/common";
 import { Component, NgZone, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { BuyingBasicFeeService } from '../../service/buying-basic-fee/buying-basic-fee.service';
+import { BuyingBasicFeeDto } from '../../Dto/buyingBasicFee.Dto';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: "app-buying-basic-fee",
@@ -10,22 +13,41 @@ import { Router } from "@angular/router";
 })
 export class BuyingBasicFeePage implements OnInit {
   buyingfeeForm: FormGroup;
+  area: any;
+  user: any;
+  buying_fee: any;
+  data:BuyingBasicFeeDto;
 
   constructor(
-    private zone: NgZone,
-    private router: Router,
+    public navCtrl: NavController,
+    private route: ActivatedRoute,
     public fb: FormBuilder
   ) {
     this.buyingfeeForm = this.fb.group({
-      buying_fee: [''],
+      // buying_fee: [''],
       create_date: [formatDate(Date.now(), 'yyyy.MM.dd', 'en-US')]
     })
   }
 
   ngOnInit() {
-    
+
+    this.route.queryParams.subscribe(params => {
+      this.user =params["user"];
+      this.area =params["area"];
+      console.log(params);
+    });
+
   }
 
-  onFormSubmit() {}
-
+  next(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          user: JSON.stringify(this.user),
+          area: this.area,
+          fee: this.buying_fee
+      }
+    };
+    this.navCtrl.navigateForward(['register-retailer'], navigationExtras);
+  }
+    
   }
