@@ -9,7 +9,9 @@ import { postcode } from 'src/assets/js/postcode.js';
 })
 export class SearchLocationPage implements OnInit {
 
-  fee;
+  user: any;
+  area: any;
+  fee: any;
 
   @ViewChild('daum_popup', { read: ElementRef, static: true }) popup: ElementRef;
 
@@ -20,13 +22,17 @@ export class SearchLocationPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
+      this.user = params["user"];
+      this.area = params["area"];
       this.fee = params["fee"]
     });
     postcode(this.renderer, this.popup.nativeElement, data => this.ngZone.run(() => {
       let navigationExtras: NavigationExtras = {
         state: {
           data: data.address,
-          fee: this.fee
+          fee: this.fee,
+          area: this.area,
+          user: this.user
         }
       };
       this.router.navigate(['/register-retailer'],navigationExtras);

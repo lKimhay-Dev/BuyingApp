@@ -6,7 +6,9 @@ export declare class MonthPickerComponent {
     select: EventEmitter<number>;
     _thisMonth: Date;
     _monthFormat: string[];
+    MONTH_FORMAT: string;
     monthFormat: string[];
     constructor();
     _onSelect(month: number): void;
+    getDate(month: number): Date;
 }

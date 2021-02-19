@@ -1,4 +1,4 @@
-import { HttpModule, Module } from '@nestjs/common';
+import { HttpModule, HttpService, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -8,11 +8,14 @@ import { DepositorsModule } from './depositors/depositors.module';
 import { UsersModule } from './users/users.module';
 import { RetailersModule } from './retailers/retailers.module';
 import { BuyingBasicFeesModule } from './buying-basic-fees/buying-basic-fees.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [ 
-    HttpModule,
+    HttpModule.register({
+      timeout: 5000,
+      maxRedirects: 5,
+    }),
     MongooseModule.forRoot('mongodb://localhost/buyingApp'),
     BuyingBasicFeesModule,
     BuyingAreasModule,
@@ -20,9 +23,8 @@ import { AuthModule } from './auth/auth.module';
     DepositorsModule,
     UsersModule,
     RetailersModule,
-    AuthModule 
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthService]
 })
 export class AppModule {}

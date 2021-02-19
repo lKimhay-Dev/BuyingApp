@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-import { LoadingController, NavController, Platform } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 import { NavigationExtras } from '@angular/router';
+import { UserService } from '../service/user/user.service';
+import { Storage } from '@ionic/storage';
+import { AuthService } from '../service/auth/auth.service';
+import { BuyingAreaService } from '../service/buying-area/buying-area.service';
 
 @Component({
   selector: 'app-login',
@@ -12,68 +17,40 @@ import { NavigationExtras } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  public user = null;
-  public loading: any;
-  public isGoogleLogin: boolean = false;
-
   constructor(
     private google: GooglePlus,
-    public loadingController: LoadingController,
     private fireAuth: AngularFireAuth,
     private platform: Platform,
-    public navCtrl: NavController
+    private router: Router,
+    private authService: AuthService,
   ) { }
 
   async ngOnInit() {
-    this.isGoogleLogin = JSON.parse(localStorage.getItem('isLogin'));
+    this.fireAuth.getRedirectResult().then(result => {
+      localStorage.setItem('token', '');
+    })
   }
 
   doLogin() {
-    let params: any;
-    this.fireAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(success => {
-      console.log('success in google login');
-      this.user = success.user;
-      // Save user data to Local Storage
-      var user = {
-        profile: success.user.photoURL,
-        name: success.user.displayName,
-        email: success.user.email,
-        uid: "600fcab0eac97643eeb34f0f"
-      };
-      // localStorage.setItem('userData', JSON.stringify(user) || '{}')
-      // localStorage.setItem('isLogin', 'true');
-
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-          user: JSON.stringify(user)
-        }
-      };
-      this.navCtrl.navigateForward(['sign-up'], navigationExtras);
-
-    }).catch(err => {
-      console.log(err.message, 'error in google login');
-    });
-  }
-  onLoginSuccess(accessToken, accessSecret) {
-    const credential = accessSecret ? firebase.auth.GoogleAuthProvider
-      .credential(accessToken, accessSecret) : firebase.auth.GoogleAuthProvider
-        .credential(accessToken);
-    this.fireAuth.signInWithCredential(credential)
-      .then((success) => {
-        alert('successfully');
-        this.user = success.user;
-        this.loading.dismiss();
+    if (this.platform.is('cordova') && this.platform.is('android')) {
+      this.google.login({}).then(user => {
+        this.authService.authenticate(user.accessToken).subscribe(result => {
+          localStorage.setItem('token', user.accessToken);
+          localStorage.setItem('email', user.email);
+          this.router.navigate(['/sign-up']);
+        })
+      }).catch((error) => {
+        alert(error)
       });
 
+    } else {
+      this.fireAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+    }
   }
 
   doLogout() {
     this.fireAuth.signOut().then(() => {
-      localStorage.setItem('isLogin', 'false');
-      localStorage.removeItem('userData');
-      window.location.href = '/home';
-      this.isGoogleLogin = false;
+      localStorage.removeItem('token');
     });
   }
-
 }

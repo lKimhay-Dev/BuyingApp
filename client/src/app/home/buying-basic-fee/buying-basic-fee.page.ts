@@ -34,7 +34,6 @@ export class BuyingBasicFeePage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.user =params["user"];
       this.area =params["area"];
-      console.log(params);
     });
 
   }

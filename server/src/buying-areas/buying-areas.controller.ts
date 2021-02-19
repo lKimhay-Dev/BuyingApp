@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { BuyingAreasService } from './buying-areas.service';
 import { CreateBuyingAreaDto } from './dto/create-buying-area.dto';
 import { UpdateBuyingAreaDto } from './dto/update-buying-area.dto';
 
+// @ApiBearerAuth()
 @Controller('buying-areas')
 export class BuyingAreasController {
   constructor(private readonly buyingAreasService: BuyingAreasService) {}

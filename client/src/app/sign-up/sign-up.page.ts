@@ -43,7 +43,10 @@ export class SignUpPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.user = JSON.parse(params["user"]);
+        const token = params.token
+        if(token != null){
+          
+        }
     });
   }
 

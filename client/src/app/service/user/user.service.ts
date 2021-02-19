@@ -29,6 +29,14 @@ export class UserService {
       );
   }
 
+  public getUserByEmail(email: string): Observable<UserDto> {
+    return this.httpClient.get<UserDto>(this.apiUrl + '/' + email)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      );
+  }
+
   public deActiveUser(id: string): Observable<UserDto> {
     return this.httpClient
       .put<UserDto>(this.apiUrl + '/de-active/' + id, this.httpOptions)
@@ -49,4 +57,5 @@ export class UserService {
     return throwError(
       'Something bad happened; please try again later.');
   };
+
 }

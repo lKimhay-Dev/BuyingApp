@@ -21,7 +21,6 @@ export class BuyingAreasService {
 
   async findOne(id: string):Promise<BuyingArea> {
     return this.buyingModel.findById(id).exec();
-
   }
 
   async update(id: string, updateBuyingAreaDto: UpdateBuyingAreaDto) {

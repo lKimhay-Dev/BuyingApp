@@ -60,7 +60,7 @@
           <ion-label class="ion-text-end">기본</ion-label>
           
         </ion-item>
-        <ion-input type="hidden" value="{{ fee }}" [(ngModel)]="data.buying_fee" name="buying_fee"></ion-input>
+        <ion-input type="number" value="{{ fee }}" [(ngModel)]="data.buying_fee" name="buying_fee" hidden></ion-input>
 
         <ion-button class="btn-size" (click)="addRetailHandler()" expand="block" >시작하기</ion-button>
 

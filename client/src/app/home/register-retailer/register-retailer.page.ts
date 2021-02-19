@@ -4,11 +4,8 @@ import { RetailerService } from '../../service/Retailer/retailer.service';
 import { DepositorService } from '../../service/depositor/depositor.service';
 import { RetailerDto } from '../../Dto/retailer.Dto';
 import { BuyingBasicFeeDto } from '../../Dto/buyingBasicFee.Dto';
-import { BuyingAreaDto } from '../../Dto/buyingArea.Dto';
-import { DepositorDto } from '../../Dto/depositor.Dto';
 import { NavController } from '@ionic/angular';
 import { BuyingBasicFeeService } from 'src/app/service/buying-basic-fee/buying-basic-fee.service';
-import { BuyingAreaService } from 'src/app/service/buying-area/buying-area.service';
 import { DeliverAreaService } from 'src/app/service/deliver-area/deliver-area.service';
 import { UserService } from 'src/app/service/user/user.service';
 import { UserDto } from 'src/app/Dto/user.Dto';
@@ -25,8 +22,10 @@ export class RegisterRetailerPage implements OnInit {
   dataUser: UserDto;
   user: any;
   area: any;
-  fee: any;
-  mfee: any; // temp store fee value from model location
+  fee: number;
+  mUser: any; // temp store fee value from model location
+  mArea: any;
+  mfee: any;
 
   constructor(
     private router: Router,
@@ -45,27 +44,28 @@ export class RegisterRetailerPage implements OnInit {
       if (this.router.getCurrentNavigation().extras.state) {
         this.data.address_ko = this.router.getCurrentNavigation().extras.state.data;
         this.mfee = this.router.getCurrentNavigation().extras.state.fee;
+        this.mArea = this.router.getCurrentNavigation().extras.state.area;
+        this.mUser = this.router.getCurrentNavigation().extras.state.user;
       }
     });
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.user = params["user"];
-      this.area = params["area"];
-      this.fee = params["fee"] || this.mfee
-      console.log(params);
+      this.user = params["user"] || this.mUser;
+      this.area = params["area"] || this.mArea;
+      this.fee = params["fee"] || this.mfee;
     });
   }
 
   increment() {
-    let increFee = Number(this.fee);
+    let increFee = +this.fee;
     increFee += 500;
     this.fee = increFee;
   }
 
   decrement() {
-    let decreFee = Number(this.fee);
+    let decreFee = +this.fee;
     decreFee -= 500;
     this.fee = decreFee;
   }
@@ -73,7 +73,9 @@ export class RegisterRetailerPage implements OnInit {
   goSearchLocate() {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-          fee: this.fee
+          fee: this.fee,
+          user: this.user,
+          area: this.area
       }
     };
     this.navCtrl.navigateForward(['search-location'], navigationExtras);
@@ -109,11 +111,12 @@ export class RegisterRetailerPage implements OnInit {
     }
 
     // Data Create Buying Fee
-    this.dataFee.buying_fee = this.fee;
+    this.dataFee.buying_fee = +this.fee;
     this.dataFee.create_date = new Date();
 
     // Data Create User
     var user = JSON.parse(JSON.parse(this.user));
+    this.dataUser.guid = user.name;
     this.dataUser.username = user.name;
     this.dataUser.email = user.email;
     this.dataUser.buying_area_id = this.area.split(",")[1];
@@ -121,17 +124,18 @@ export class RegisterRetailerPage implements OnInit {
 
     this.depositorService.createDepo(deposNames).subscribe(depos => {
       this.data.depositors = depos;
-
+      this.data.buying_fee = +this.fee;
+      
       this.retailerService.createRetailer(this.data).subscribe(res => {
-
+        
         this.buyingFeeService.createBuyingFee(this.dataFee).subscribe(res => {
           
           this.userService.createUser(this.dataUser).subscribe(res => {
-            console.log(res);
+            
             localStorage.setItem('userData', this.user || '{}')
             localStorage.setItem('isLogin', 'true');
-
-            this.router.navigate(['home']);
+            alert("Success");
+            this.router.navigate(['/home']);
           })
         })
       })

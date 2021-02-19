@@ -56,8 +56,8 @@
     },
     "is_top_level": true,
     "variables": {
-      "REVERSED_CLIENT_ID": "io.ionic.starter",
-      "WEB_APPLICATION_CLIENT_ID": "859939852627-h1lm5j4v97pohan1dhissmin28sebkc2.apps.googleusercontent.com"
+      "REVERSED_CLIENT_ID": "com.buyingapp",
+      "WEB_APPLICATION_CLIENT_ID": "210328537534-2j7dqj85aarmtp36p2f8n1eik389egrs.apps.googleusercontent.com"
     }
   }
 }

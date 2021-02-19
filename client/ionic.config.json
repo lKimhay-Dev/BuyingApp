@@ -1,10 +1,10 @@
 {
   "name": "BuyingApp",
   "integrations": {
-    "capacitor": {
+    "capacitor": {},
+    "cordova": {
       "enabled": false
-    },
-    "cordova": {}
+    }
   },
   "type": "angular"
 }

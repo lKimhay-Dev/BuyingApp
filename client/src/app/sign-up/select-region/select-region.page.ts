@@ -33,7 +33,6 @@ export class SelectRegionPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.user = JSON.parse(params["user"]);
     });
-    // console.log(this.user);
   }
 
   async modelBuyingArea() {

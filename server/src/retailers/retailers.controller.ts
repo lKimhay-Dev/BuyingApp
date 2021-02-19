@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, UseGuards } from '@nestjs/common';
 import { RetailersService } from './retailers.service';
 import { CreateRetailerDto } from './dto/create-retailer.dto';
 import { UpdateRetailerDto } from './dto/update-retailer.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+// @ApiBearerAuth()
 @Controller('retailers')
 export class RetailersController {
   constructor(private readonly retailersService: RetailersService) {}
