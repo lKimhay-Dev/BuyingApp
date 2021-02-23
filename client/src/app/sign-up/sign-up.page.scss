@@ -70,6 +70,10 @@ ion-router-link[color__]{
 
 }
 .btn{
+    padding: 0 10px;
     height: 48px;
-    margin: 15px 15px 15px 15px;
+    position: fixed;
+    left: 0;
+    bottom: 15px;
+    width: 100%;
 }

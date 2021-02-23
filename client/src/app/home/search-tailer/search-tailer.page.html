@@ -17,7 +17,7 @@
 <ion-content>
   <ion-list  *ngIf="data.length > 0">
 
-    <ion-item *ngFor="let newData of data | orderBy: sortBy: sortOpt" (click)="getDetail(newData)">
+    <ion-item *ngFor="let newData of data | filter:filterTerm" (click)="getDetail(newData)">
 
       <ion-label class="ion-text-start font_size  ion-no-margin ion-no-padding">
 

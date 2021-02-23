@@ -29,6 +29,15 @@ export class UserService {
       );
   }
 
+  public updateUser(user: UserDto): Observable<UserDto> {
+    return this.httpClient
+      .put<UserDto>(this.apiUrl + '/' + user.email, user, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      );
+  }
+
   public getUserByEmail(email: string): Observable<UserDto> {
     return this.httpClient.get<UserDto>(this.apiUrl + '/' + email)
       .pipe(

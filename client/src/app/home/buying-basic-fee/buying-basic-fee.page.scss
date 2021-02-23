@@ -31,9 +31,13 @@
     line-height: 20px;
 }
 .cus-round{
-    height: 50px;
-    --border-radius: 10px;
-    margin: 0 15px 25px 15px;
+    padding: 0 10px;
+    height: 48px;
+    --border-radius: 10px;  
+    position: fixed;
+    left: 0;
+    bottom: 15px;
+    width: 100%;
 }
 .purc-label_{
     color: blue;

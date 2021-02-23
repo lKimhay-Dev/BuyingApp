@@ -39,6 +39,8 @@ export class RetailerPage implements OnInit, PipeTransform {
   }
 
   getDetail(item){
+    console.log(item);
+    
     let navigationExtras: NavigationExtras = {
       queryParams: {
           data: JSON.stringify(item)

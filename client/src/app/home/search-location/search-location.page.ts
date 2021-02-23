@@ -22,7 +22,6 @@ export class SearchLocationPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.user = params["user"];
       this.area = params["area"];
       this.fee = params["fee"]
     });
@@ -31,8 +30,7 @@ export class SearchLocationPage implements OnInit {
         state: {
           data: data.address,
           fee: this.fee,
-          area: this.area,
-          user: this.user
+          area: this.area
         }
       };
       this.router.navigate(['/register-retailer'],navigationExtras);

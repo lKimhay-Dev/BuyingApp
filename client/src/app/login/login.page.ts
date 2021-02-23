@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
@@ -17,15 +17,23 @@ import { BuyingAreaService } from '../service/buying-area/buying-area.service';
 })
 export class LoginPage implements OnInit {
 
+  isGoogleLogin: boolean = false;
+
   constructor(
     private google: GooglePlus,
     private fireAuth: AngularFireAuth,
     private platform: Platform,
     private router: Router,
     private authService: AuthService,
-  ) { }
+    public navCtrl: NavController
+  ) { 
+    this.isGoogleLogin = localStorage.getItem('isRegister') == 'true' ? true : false;
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.router.navigate(['/home']);
+    });
+  }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.fireAuth.getRedirectResult().then(result => {
       localStorage.setItem('token', '');
     })
@@ -37,7 +45,8 @@ export class LoginPage implements OnInit {
         this.authService.authenticate(user.accessToken).subscribe(result => {
           localStorage.setItem('token', user.accessToken);
           localStorage.setItem('email', user.email);
-          this.router.navigate(['/sign-up']);
+          localStorage.setItem('isRegister', "false");
+          this.router.navigate(['/home']);
         })
       }).catch((error) => {
         alert(error)
@@ -50,7 +59,9 @@ export class LoginPage implements OnInit {
 
   doLogout() {
     this.fireAuth.signOut().then(() => {
+      localStorage.setItem('isRegister', "false");
       localStorage.removeItem('token');
+      window.location.href = '/login';
     });
   }
 }

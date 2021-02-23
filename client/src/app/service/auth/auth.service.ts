@@ -53,8 +53,6 @@ export class AuthService {
   }
 
   errorResponse(error: HttpErrorResponse) {
-    console.log(error);
-
     return throwError(`${error.statusText}`);
   }
 }

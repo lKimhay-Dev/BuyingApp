@@ -30,9 +30,6 @@ export class SelectRegionPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.user = JSON.parse(params["user"]);
-    });
   }
 
   async modelBuyingArea() {
@@ -80,7 +77,6 @@ export class SelectRegionPage implements OnInit {
   next(){
     let navigationExtras: NavigationExtras = {
       queryParams: {
-          user: JSON.stringify(this.user),
           area: "buyArea,"+this.buyAreaId+",deliverArea,"+this.deliverAreaId
       }
     };

@@ -17,6 +17,7 @@ export class BuyingBasicFeePage implements OnInit {
   user: any;
   buying_fee: any;
   data:BuyingBasicFeeDto;
+  getVal:boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -30,18 +31,18 @@ export class BuyingBasicFeePage implements OnInit {
   }
 
   ngOnInit() {
-
     this.route.queryParams.subscribe(params => {
-      this.user =params["user"];
       this.area =params["area"];
     });
+  }
 
+  chkVal(val){
+    val != "" ? this.getVal = true : this.getVal = false;
   }
 
   next(){
     let navigationExtras: NavigationExtras = {
       queryParams: {
-          user: JSON.stringify(this.user),
           area: this.area,
           fee: this.buying_fee
       }

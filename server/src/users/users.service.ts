@@ -31,8 +31,8 @@ export class UsersService {
       .exec();
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
-    return this.userModel.updateOne({ _id: id }, updateUserDto, { new: true });
+  async update(email: string, updateUserDto: UpdateUserDto) {
+    return this.userModel.updateOne({ email: email }, updateUserDto);
   }
 
   async deActive(id: string) {

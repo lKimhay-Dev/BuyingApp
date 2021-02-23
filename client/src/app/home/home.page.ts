@@ -1,7 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuController,NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { UserService } from '../service/user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -11,39 +13,35 @@ import { Storage } from '@ionic/storage';
 export class HomePage implements OnInit {
 
   user: any;
-  profile: String;
-  username: String;
-  email: String;
+  profile: string = 'https://images.macrumors.com/t/6jfiBfTMQZ_y6TfR50NZ9F9vJiU=/800x0/filters:quality(90)/article-new/2019/04/guest-user-250x250.jpg?lossy';
+  username: string ='손님';
+  email: string = 'guestuser@gmail.com';
 
   constructor(
+    private router: Router,
     private menu:MenuController, 
-    private navCtrl:NavController,
-    private storage: Storage
+    private userService: UserService
   )
-  { }
+  {}
 
   ngOnInit() {
-    // const localData = JSON.parse(JSON.parse(localStorage.getItem('userData')));
-    // const localData = JSON.parse(localStorage.getItem('userData'));
-    // alert("localData: "+localData)
-
-    // // // If user not login, go to login
-    // if(localData == null) this.navCtrl.navigateRoot('/login');
-    
-    // // // If localData is no data then get default
-    // this.profile = localData != null ? 
-    //                   localData['profile']
-    //                   :
-    //                   'https://images.macrumors.com/t/6jfiBfTMQZ_y6TfR50NZ9F9vJiU=/800x0/filters:quality(90)/article-new/2019/04/guest-user-250x250.jpg?lossy';
-    // this.username = localData != null ? 
-    //                   localData['name']
-    //                   :
-    //                   '손님';
-    // this.email = localData != null ? 
-    //                   localData['email']
-    //                   :
-    //                   'guestuser@gmail.com';
+    let email = localStorage.getItem('email');
+    this.userService.getUserByEmail(email).subscribe(res => {
+      this.username = res.username;
+      this.email = res.email;
+      this.profile = res.guimg;
+    })
   }
+
+  goHome(){
+    this.router.navigate(['/home']);
+  }
+
+  goChangePurchaseFee(){
+    this.router.navigate(['/change-purchase-fee']);
+  }
+  
+
   closeMenu(){
     this.menu.close();
   }

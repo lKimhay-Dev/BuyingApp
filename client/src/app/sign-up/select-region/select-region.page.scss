@@ -2,6 +2,7 @@
 .style-size{
     width: 100%;
      margin-top: 390px;
+     
 }
 .Ja{
     margin-top: 25px;
@@ -30,6 +31,7 @@ ion-text[start1]{
     
     height: 56px;
     margin: 15px 15px 15px 15px;
+    --border-radius: 8px;
 }
 .y{
     width: 36%;
@@ -73,4 +75,13 @@ span.txt_hide {
 
 .ion-button{
     border: 1px solid #888;
+}
+
+.btn-row{
+    padding: 0 10px;
+    height: 48px;
+    position: fixed;
+    left: 0;
+    bottom: 15px;
+    width: 100%;
 }

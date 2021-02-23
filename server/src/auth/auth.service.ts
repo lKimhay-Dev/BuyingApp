@@ -5,9 +5,10 @@ import { UsersService } from "src/users/users.service";
 @Injectable()
 export class AuthService {
 
-    constructor(private httpService: HttpService, private userService: UsersService) {
-
-    }
+    constructor(
+        private httpService: HttpService,
+        private userService: UsersService
+    ) {}
 
     async validateToken(request) {
         let userData: any = {}
@@ -20,6 +21,7 @@ export class AuthService {
                     user.username = userData.name
                     user.guid = userData.id
                     user.email = userData.email
+                    user.guimg = userData.picture;
                     this.userService.create(user)
                 }
             })

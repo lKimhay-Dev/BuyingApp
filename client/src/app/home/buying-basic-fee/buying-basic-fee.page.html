@@ -1,6 +1,6 @@
 
 <ion-content>
-  <Form>
+  <!-- <Form > -->
     <ion-item>
       <ion-title class="purc-label_">기본 사입비를 입력해 주세요.</ion-title>
     </ion-item>
@@ -11,7 +11,7 @@
 
     <ion-item>
       <ion-label class="size" slot="end">원</ion-label>
-      <ion-input placeholder="사입비" type="number" [(ngModel)]="buying_fee"></ion-input>
+      <ion-input placeholder="사입비" type="number" [(ngModel)]="buying_fee" (ionChange)='chkVal($event.target.value)'></ion-input>
     </ion-item>
 
     <ion-item >
@@ -19,12 +19,14 @@
         <span class="note">전체메뉴>기본 사입비 변경</span>
         탭에서 하실 수 있습니다.
       </ion-text>
-      
     </ion-item>
+
+    <ion-button (click)="next()" class="cus-round" [disabled]="!getVal" color="primary" expand="block" fill="solid">
+      다음
+    </ion-button>
+  <!-- </Form> -->
+
+
   
-      <ion-button (click)="next()" class="cus-round" color="primary" expand="block" fill="solid">
-        다음
-      </ion-button>
-    </Form>
   
 </ion-content>

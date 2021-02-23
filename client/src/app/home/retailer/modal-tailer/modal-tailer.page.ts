@@ -21,7 +21,7 @@ export class ModalTailerPage implements OnInit {
   }
 
   selectSort(event) {
-    // console.log(event.target.value);
+    console.log(event.target.value);
     this.modalController.dismiss(event.target.value);
   }
 

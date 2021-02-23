@@ -86,12 +86,7 @@ export class SignUpPage implements OnInit {
   }
 
   next(){
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-          user: JSON.stringify(this.user)
-      }
-    };
-    this.navCtrl.navigateForward(['sign-up/select-region'], navigationExtras);
+    this.navCtrl.navigateForward(['sign-up/select-region']);
   }
 
 }

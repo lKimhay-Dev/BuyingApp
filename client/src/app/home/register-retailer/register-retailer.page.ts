@@ -45,17 +45,16 @@ export class RegisterRetailerPage implements OnInit {
         this.data.address_ko = this.router.getCurrentNavigation().extras.state.data;
         this.mfee = this.router.getCurrentNavigation().extras.state.fee;
         this.mArea = this.router.getCurrentNavigation().extras.state.area;
-        this.mUser = this.router.getCurrentNavigation().extras.state.user;
       }
     });
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.user = params["user"] || this.mUser;
       this.area = params["area"] || this.mArea;
       this.fee = params["fee"] || this.mfee;
     });
+    
   }
 
   increment() {
@@ -74,7 +73,6 @@ export class RegisterRetailerPage implements OnInit {
     let navigationExtras: NavigationExtras = {
       queryParams: {
           fee: this.fee,
-          user: this.user,
           area: this.area
       }
     };
@@ -114,11 +112,7 @@ export class RegisterRetailerPage implements OnInit {
     this.dataFee.buying_fee = +this.fee;
     this.dataFee.create_date = new Date();
 
-    // Data Create User
-    var user = JSON.parse(JSON.parse(this.user));
-    this.dataUser.guid = user.name;
-    this.dataUser.username = user.name;
-    this.dataUser.email = user.email;
+    this.dataUser.email = localStorage.getItem('email');
     this.dataUser.buying_area_id = this.area.split(",")[1];
     this.dataUser.delivery_area_id = this.area.split(",")[3];
 
@@ -130,12 +124,10 @@ export class RegisterRetailerPage implements OnInit {
         
         this.buyingFeeService.createBuyingFee(this.dataFee).subscribe(res => {
           
-          this.userService.createUser(this.dataUser).subscribe(res => {
-            
-            localStorage.setItem('userData', this.user || '{}')
+          this.userService.updateUser(this.dataUser).subscribe(res => {
+            localStorage.setItem('isRegister', 'true');
             localStorage.setItem('isLogin', 'true');
-            alert("Success");
-            this.router.navigate(['/home']);
+            this.router.navigate(['/']);
           })
         })
       })

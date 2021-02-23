@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, NavigationExtras, Router } from '@angular/router';
 import { AuthService } from '../service/auth/auth.service';
 import { UserService } from '../service/user/user.service';
 
@@ -15,22 +15,15 @@ export class AuthGuard implements CanActivate {
    }
   canActivate() {
     const token = localStorage.getItem('token')
-    if (token)
-      this.authService.authenticate(token).subscribe(_ => {
-        const userEmail = localStorage.getItem('email')
-        this.userService.getUserByEmail(userEmail).subscribe(res => {
-          alert(!res.buying_area_id)
-          if (res.buying_area_id == null) {
+    const isRegister = localStorage.getItem('isRegister')
 
-            alert("sign-up")
-            this.router.navigate(['/sign-up'])
-          }
-          else {
-            alert("Home")
-            this.router.navigate(['/home'])
-          }
-        })
-      })
+    if (token){
+        if(isRegister && isRegister === 'true'){
+          return true;
+        }else{
+          this.router.navigate(['/sign-up'])
+        }
+      }
       else {  
         this.router.navigate(['/login'])
     }

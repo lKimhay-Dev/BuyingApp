@@ -24,7 +24,7 @@ export class BuyingBasicFeesService {
   }
 
   async update(id: string, updateBuyingBasicFeeDto: UpdateBuyingBasicFeeDto){
-    return this.buyingModel.updateOne({_id:id} ,updateBuyingBasicFeeDto, {new:true});
+    return this.buyingModel.updateOne({_id:id} ,updateBuyingBasicFeeDto);
   }
 
   async remove(id: string):Promise<BuyingBasicFee> {

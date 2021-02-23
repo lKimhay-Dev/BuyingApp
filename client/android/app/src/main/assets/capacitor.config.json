@@ -10,5 +10,8 @@
     }
   },
   "cordova": {},
-  "linuxAndroidStudioPath": "/home/kimhay/android-studio-4/android-studio/bin/studio.sh"
+  "linuxAndroidStudioPath": "/home/kimhay/android-studio-4/android-studio/bin/studio.sh",
+  "server": {
+    "url": "http://localhost:8100"
+  }
 }
