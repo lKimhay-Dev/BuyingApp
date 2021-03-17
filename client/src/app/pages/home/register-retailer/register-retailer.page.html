@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-button expand="full" fill="clear" [routerLink]="['/home/retailer']">
+        <ion-icon slot="icon-only" class="arow-back" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-title class="info">거래처(소매처)를 등록해주세요</ion-title>
+    </ion-row>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+      <form>
+        <ion-item>
+          <ion-label position="floating">
+            <ion-icon  name="newspaper-outline"></ion-icon>소매업채명 <ion-text color="warning">(필수)</ion-text> </ion-label>
+          <ion-input type="text" [(ngModel)]="retailerDto.retailer_name" name="retailer_name"></ion-input>
+        </ion-item>
+
+        <ion-item >
+          <ion-label position="floating">
+            <ion-icon name="phone-portrait-outline"></ion-icon>전화번호<ion-text color="warning">(필수)</ion-text></ion-label>
+            <ion-input type="text" 
+              [(ngModel)]="retailerDto.phone_number" 
+              name="phone_number" 
+              placeholder="xxx-xxx-xxxx"
+              (keyup)="phoneNoFormatHandler()"
+              >
+
+          </ion-input>
+        </ion-item>
+
+        <ion-item >
+          <ion-label position="floating">
+            <ion-icon name="location-outline"></ion-icon>주소<ion-text color="warning">(필수)</ion-text>
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="retailerDto.address_zone_no" name="address_zone_no"></ion-input>
+          <ion-button class="btn" (click)="goSearchLocate()" color="light" slot="end">우편번호 검색</ion-button>
+        </ion-item>
+
+        <ion-item *ngIf="retailerDto.address_ko">
+          <ion-input type="text" [(ngModel)]="retailerDto.address_ko" name="address"></ion-input>
+        </ion-item>
+
+        <ion-item class="showInputField">
+          <ion-label position="floating">
+            <ion-icon name="person-outline"></ion-icon>입륵자명</ion-label>
+          <ion-input type="text" id="child0" name="name"></ion-input>
+          <!-- <ion-input type="text" [(ngModel)]="depo.name" name="name"></ion-input> -->
+        </ion-item>
+
+        <div id="showInputField" class="showInputField">
+         
+        </div>
+
+        <ion-item>
+          <ion-icon name="add-outline" (click)="addDepositor()"></ion-icon>
+          <ion-icon name="remove-outline" (click)="removeDepositor()"></ion-icon>
+        </ion-item>
+
+        <ion-item >
+          <ion-label class="info">입금자명이 업체명과 다를 경우 입력해주세요</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="label-size">사입비</ion-label>
+          <ion-icon name="remove-outline" (click)="decrement()"></ion-icon>
+          <p class="ion-padding" >{{ fee }} 원</p>
+          <ion-icon name="add-outline" (click)="increment()"></ion-icon>
+          <ion-label class="ion-text-end">기본</ion-label>
+          
+        </ion-item>
+        <ion-input type="number" value="{{ fee }}" [(ngModel)]="retailerDto.buying_fee" name="buying_fee" hidden></ion-input>
+
+        <!-- <ion-button class="btn-size" (click)="addRetailHandler()" expand="block" >시작하기</ion-button> -->
+      </form>
+    </ion-list>
+    
+    <ion-button class="btn-size" (click)="addRetailHandler()" expand="block" >시작하기</ion-button>
+
+</ion-content>

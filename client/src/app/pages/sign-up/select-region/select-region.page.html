@@ -1,0 +1,30 @@
+<ion-content >
+  <h6 class="Ja">주 사입 및 배송 지역을 선택해 주세요.</h6>
+
+  <label class="style_txt">주 사입 지역</label>
+  <ion-button class="btn" (click)="modelBuyingArea()" color="light" expand="block">
+    {{buyArea}}
+    <ion-img class="ion-float-left" src="./assets/img/icon_more.png"></ion-img>
+  </ion-button>
+
+  <br />
+
+  <label class="style_txt">주 배송 지역</label>
+  <ion-button class="btn" (click)="modelDeliverArea()" color="light" expand="block">{{deliverArea}}
+    <ion-img  class="ion-float-left" src="./assets/img/icon_more.png"
+    ></ion-img>
+  </ion-button>
+  <!-- <div class="style-size">
+    <ion-button style="width: 40%;height: 48px;--border-radius: 8px" color="light">건너뛰기 </ion-button>
+    <ion-button (click)="next()" style="margin-left: 20px;width: 35%;height: 48px;--border-radius: 8px" color="primary" [disabled]="!seletedArea">다음 </ion-button>
+  </div> -->
+  <ion-row  class="btn-row">
+    <ion-col size="4">
+      <ion-button class="btn" color="light">건너뛰기 </ion-button>
+    </ion-col>
+    <ion-col size="8">
+      <ion-button (click)="next()" class="btn" color="primary" [disabled]="!selectedArea">다음 </ion-button>
+    </ion-col>
+  </ion-row>
+  
+</ion-content>  

@@ -1,0 +1,108 @@
+.content {
+  margin: 16px;
+}
+
+.text-margin {
+  margin: 16px 8px;
+}
+
+.item-input {
+  width: 100%;
+  font-size: 16px;
+  --highlight-background: #0048ff;
+}
+
+.text-color {
+  color: #999999;
+}
+
+.text-color2 {
+  color: #131313;
+}
+
+.button-radius {
+  --border-radius: 8px;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  background-color: white;
+  width: 100%;
+}
+
+.search-button {
+  position: relative;
+  height: 40px;
+  width: 40px;
+}
+
+.search-button > ion-icon {
+  height: 24px !important;
+  width: 24px !important;
+  margin: -7px;
+}
+
+.search-dropdown {
+  width: 105%;
+  position: absolute;
+  z-index: 1000;
+  margin-top: 60px;
+  background-color: #fff;
+  margin-left: -5px;
+}
+
+.search-dropdown-item {
+  padding: 10px 15px;
+}
+
+
+.search-tip div:first-child {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.search-tip div:last-child {
+  font-size: 14px;
+  color: #999999;
+}
+
+.search-result {
+  margin: 0 8px;
+  padding: 16px 0;
+}
+
+.address-card {
+  margin: 8px -8px;
+}
+
+.address-card .zone-number {
+  font-size: 16px;
+  color: black;
+  margin-bottom: 9px;
+}
+
+.address-card .address-name {
+  margin-bottom: 6px;
+}
+
+.address-card .address-label {
+  display: inline-block;
+  width: 65px;
+}
+
+.selected-address-card {
+  --background: #f3f5fc;
+  box-shadow: none;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.save-button {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  left: 8px;
+  height: 48px;
+  --background: #cccccc;
+}

@@ -1,0 +1,31 @@
+<ion-card-content>
+  <div>
+  <ion-label class="modal-title">{{retailerDto.retailer_name}}</ion-label>
+
+  <ion-row class="margin-top-bot-10">
+    <ion-icon name="location-outline" class="modal-icon"></ion-icon>
+    <ion-label>주소</ion-label>
+  </ion-row>
+
+  <ion-label>{{retailerDto.address_ko}}</ion-label>
+
+  <ion-row class="margin-top-bot-10">
+    <ion-icon name="phone-portrait-outline" class="modal-icon"></ion-icon>
+    <ion-label>전화번호</ion-label>
+  </ion-row>
+
+  <!-- <ion-label> {{retailerDto.phone_number | phonePipe}}</ion-label> -->
+  <ion-label> {{retailerDto.phone_number}}</ion-label>
+
+</div>
+</ion-card-content>
+
+<ion-footer>
+
+  <ion-toolbar>
+    <ion-button (click)="dismiss()" expand="block" fill="clear">
+      닫기
+    </ion-button>
+  </ion-toolbar>
+
+</ion-footer>

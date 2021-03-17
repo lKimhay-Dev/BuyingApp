@@ -1,0 +1,221 @@
+.bg-calender{
+    background-color: #f3f5fc;
+}
+.bg-white{
+    background-color: white;
+}
+.height32{
+    height: 32px;
+}
+.padding-top8{
+    padding-top:8px;
+}
+.row{
+    display: unset;
+}
+.underline{
+    text-decoration: underline;
+}
+.line-height{
+    line-height: 2;
+    text-align: left;
+}
+.round-border{
+    border: 2px solid lightgrey;
+    margin-right: 5px;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 13px;
+    background-color: white;
+}
+.info{
+    font-size: 12px;
+}
+.margin-t5{
+  margin-top: 5px;
+}
+.margin-l-r{
+  margin: 0 8px;
+}
+.orange{
+    color: #ee5a19;
+}
+.blue{
+    color: #2e50cb;
+}
+.black{
+    color: #1e1f20;
+}
+ion-col {
+    text-align: center;
+}
+.col-border{
+    border-left: ridge;
+    border-right: ridge;
+}
+.btn-his{
+    --background: #e3e9ff;
+    --background-activated: #dbdff1;
+    color:#5375e8;
+}
+.borderTop{
+    border-top: ridge;
+}
+.order-count{
+    font-weight: bold;
+    color:#2b59f5;
+}
+.font-bold{
+    font-weight: bold;
+}
+.cal-title{
+  font-size: 18px;
+  font-weight: bold;
+}
+.slas{
+    margin: 0 5px;
+}
+
+$primary: var(--primary-color);
+
+.with-event {
+    // background-color: var(--ion-color-primary);
+    background-color: #ee5a19;
+    border-radius: 10px;
+}
+
+.indicator-container {
+    padding-left: 0.5rem;
+    padding-bottom: 0.4rem;
+}
+
+
+
+.event-indicator {
+    // background: var(--ion-color-success);
+    background: white;
+    width:5px;
+    height: 5px;
+    border-radius:5px;
+    display: table-cell;
+}
+
+
+
+:host ::ng-deep {
+  .days-btn p{
+        color: black !important;
+  }
+  .event-detail-container{
+    display: none;
+  }
+  .monthview-container{
+    margin: 8px 0 15px;
+  }
+  .danger button.days-btn small, .danger .days .marked p, .danger .days .today p{
+        color: blue !important;
+  }
+  .red{
+      background-color: red !important;
+  }
+  .cp{
+    background-color: #ee5a19 !important;
+    font-weight: bold !important;
+    color: white !important;
+  }
+  .ar{
+    background-color: #2e50cb !important;
+    font-weight: bold !important;
+    color: white !important;
+  }
+  .table-bordered{
+    border: none !important;
+  }
+  .table-bordered > thead > tr > th, 
+  .table-bordered > tbody > tr > th, 
+  .table-bordered > tfoot > tr > th, 
+  .table-bordered > thead > tr > td, 
+  .table-bordered > tbody > tr > td, 
+  .table-bordered > tfoot > tr > td{
+    border: none !important;
+  }
+  .monthview-primary-with-event{
+    background-color: white !important;
+  }
+  .monthview-selected {
+    background-color: var(--ion-color-success) !important;
+  }
+}
+
+ion-calendar {
+
+    $btn-width: 54px;
+  
+    padding: 0 !important;
+    box-sizing: border-box;
+    display: inline-block;
+    background-color: #f3f5fc;
+    width: 100%;
+  
+    .title {
+      padding: 0 $btn-width 0 $btn-width;
+      overflow: hidden;
+      .back, .forward, .switch-btn {
+        display: block;
+        position: relative;
+        float: left;
+        min-height: 32px;
+        margin: 0;
+        padding: 0;
+        font-size: 15px;
+      }
+  
+      .back, .forward {
+        color: #757575;
+      }
+  
+      .back {
+        margin-left: -100%;
+        left: -$btn-width;
+        width: $btn-width;
+      }
+  
+      .forward {
+        margin-left: -$btn-width;
+        right: -$btn-width;
+        width: $btn-width;
+      }
+  
+      .switch-btn {
+        width: 100%;
+        text-align: center;
+        line-height: 32px;
+        color: #757575;
+  
+        .arrow-dropdown {
+          margin-left: 5px;
+        }
+      }
+    }
+  
+    .days.between {
+      .days-btn.is-last, .days-btn.is-first {
+        border-radius: 0;
+      }
+    }
+  
+    .component-mode {
+      .days.startSelection.is-last-wrap {
+        &::after {
+          border-radius: 0;
+        }
+      }
+  
+      .days.endSelection.is-first-wrap {
+        &::after {
+          border-radius: 0;
+        }
+      }
+    }
+  
+}

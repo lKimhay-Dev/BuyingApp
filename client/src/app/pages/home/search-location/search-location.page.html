@@ -1,0 +1,103 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/register-retailer">우편번호 검색</ion-back-button>
+            <ion-label>우편번호 검색</ion-label>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="content">
+        <!--Search address input and button-->
+        <div class="search-wrapper">
+            <!--Input text address-->
+            <ion-item class="item-input">
+                <ion-label class="text-color margin-left-minus" position="floating">도로명, 지번, 건물명</ion-label>
+                <ion-input (ionChange)="addressNameSuggestionHandler()" [(ngModel)]="textAddress"></ion-input>
+            </ion-item>
+
+            <!--Button search address-->
+            <ion-button (click)="searchAddressHandler()" [disabled]="!textAddress" class="search-button button-radius">
+                <ion-icon size="large" slot="icon-only" name="search"></ion-icon>
+            </ion-button>
+
+            <div class="search-dropdown" *ngIf="!isHideAddressNameSuggestion">
+                <ion-item-group>
+                    <div
+                            class="search-dropdown-item"
+                            *ngFor="let address of addressSuggestions"
+                            (click)="selectAddressSuggestionHandler(address)">
+                        {{address.address_name}}
+                    </div>
+                </ion-item-group>
+            </div>
+        </div>
+
+        <!--Show tip search address-->
+        <div *ngIf="isShowSearchTip" class="text-margin search-tip">
+            <div>우편번호 검색 TIP</div>
+            <div>
+                - 도로명 + 건물번호예) 뚝섬로 379 <br>
+                - 지명명(동/리)+번지예) 성수동2가 333-16
+            </div>
+        </div>
+
+        <!--Show result search address-->
+        <div *ngIf="addresses.length > 0 && !isAddressSelected" class="search-result">
+            <div class="search-count">
+                검색한 결과 총
+                <ion-text color="primary">{{addresses.length}}건</ion-text>
+                입니다.
+            </div>
+            <div *ngFor="let addr of addresses; let i = index;" class="card">
+                <ion-card *ngIf="addr.road_address" class="address-card">
+                    <ion-card-content (click)="selectAddressHandler(i)">
+                        <div class="zone-number">{{ addr.road_address.zone_no}}</div>
+                        <div class="address-name">
+                            <div class="address-label">도로명</div>
+                            <span class="text-color2">{{ addr.address.address_name}}</span>
+                        </div>
+                        <div class="road-address">
+                            <div class="address-label">지번</div>
+                            <span class="text-color2">{{ addr.road_address.address_name}}</span>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </div>
+
+        <!--Show result not found message-->
+        <div class="text-margin" *ngIf="isAddressNotFound && !isShowSearchTip">
+            검색을 찾을 수 없음
+        </div>
+
+        <!--Show selected address, input address detail and save address button-->
+        <div *ngIf="isAddressSelected" class="position-abs2">
+            <!--Address-->
+            <ion-card class="address-card  selected-address-card">
+                <ion-card-content>
+                    <div class="zone-number">{{ address.road_address.zone_no}}</div>
+                    <div class="address-name">
+                        <div class="address-label">도로명</div>
+                        <span class="text-color2">{{ address.address.address_name}}</span>
+                    </div>
+                    <div class="road-address">
+                        <div class="address-label">지번</div>
+                        <span class="text-color2">{{ address.road_address.address_name}}</span>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+
+            <!--Input address detail-->
+            <div class="text-margin">나머지 상세 주소를 입력해주세요.</div>
+            <ion-item class="item-input">
+                <ion-label class="text-color" position="floating">상세 주소</ion-label>
+                <ion-input [(ngModel)]="address.address_detail"></ion-input>
+            </ion-item>
+
+            <!--Button save address-->
+            <ion-button [disabled]="!address.address_detail" color="{{address.address_detail ? 'primary': ''}}" class="save-button button-radius" (click)="saveAddressHandler()" expand="block">입력</ion-button>
+        </div>
+    </div>
+</ion-content>

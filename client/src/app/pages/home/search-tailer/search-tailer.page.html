@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+
+        <ion-title>
+            <ion-row>
+                <ion-button [routerLink]="['/home/retailer']" btn_width fill="clear" shape="round">
+                    <ion-icon slot="icon-only" class="arow-back" name="arrow-back-outline"></ion-icon>
+                </ion-button>
+                <ion-input type="text" placeholder="검색" [(ngModel)]="filterTerm" animated="true"></ion-input>
+            </ion-row>
+        </ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list *ngIf="retailers.length > 0">
+
+        <ion-item *ngFor="let retailer of retailers | filter:filterTerm" (click)="getDetail(retailer)">
+
+            <ion-label class="ion-text-start font_size  ion-no-margin ion-no-padding">
+
+                <span text_underline>{{retailer.retailer_name}}</span>
+
+                <span *ngFor="let depo of retailer.depositors">&nbsp;/&nbsp;{{depo.name}}</span>
+
+                <p>
+                    <span text_color>소매업채명</span>
+                    <span>&nbsp;{{retailer.buying_fee | number }}명</span>
+                    <span text_color> &nbsp;(소매업채명)</span>
+                </p>
+
+            </ion-label>
+
+            <ion-label class="ion-text-end flex_none">
+                <ion-icon name="call-sharp"></ion-icon>
+                <ion-icon></ion-icon>
+                <ion-icon name="location-sharp" text_color></ion-icon>
+            </ion-label>
+
+        </ion-item>
+
+    </ion-list>
+
+
+</ion-content>

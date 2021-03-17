@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-button [routerLink]="['/acc-management']" expand="block" fill="clear" shape="round">
+        <ion-icon slot="icon-only" class="arow-back" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-title>등록 취소</ion-title>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="regis">
+
+    <ion-label class="info">탈퇴하시면 등록한 모든 정보*는 삭제되어복구할 수 없습니다.</ion-label>
+    
+    <ion-row class="pading-10">
+      <ion-label class="note">*정보</ion-label>
+      <ion-label>소배처 정보, 사업이력, 정산이력 등을 포함하는 모든정보</ion-label>
+    </ion-row>
+  
+    <ion-row class="checkDel">
+      <ion-button (click)="chkDelete()" color="medium" size="small"  fill="clear" >
+        <ion-icon slot="icon-only" class="arow-back" id="arow-back" name="checkmark-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-label class="chk-text">전부 삭제하고 탈퇴하겠습니다.</ion-label>
+    </ion-row>
+
+  </ion-row>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button class="cus-round" (click)="deleteAcc()" color="danger" expand="block" fill="outline" disabled={{isAgree}}>
+      탈퇴하기
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

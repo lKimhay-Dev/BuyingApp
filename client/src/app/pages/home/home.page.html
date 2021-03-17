@@ -1,0 +1,102 @@
+<ion-app>
+  <ion-menu side="start" content-id="main-content">
+    <ion-header class="ion-no-border">
+      <ion-toolbar color="primary">
+        <ion-avatar smallImg slot="start">
+          <ion-img [src]="profile"></ion-img>
+        </ion-avatar>
+        <ion-title padingName>
+          <p class="ion-no-margin ion-no-padding" info>{{username}}</p>
+          <p padingName class="ion-no-margin ion-no-padding">{{email}}</p>
+        </ion-title>
+        <ion-icon marginIconClose name="close" slot="end" (click)="closeMenu()" ></ion-icon>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <ion-item [routerLink]="['/acc-management']">
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          <ion-label>계정관리</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          <ion-label>사용설명</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          <ion-label>이용약관</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          <ion-label>개인 정보 처리 방침</ion-label>
+        </ion-item>
+        <ion-item (click)="goChangePurchaseFee()">
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          <ion-label>기본 사입비 변경</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <div class="ion-page ion-no-padding" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="ion-text-center" info >사입하다</ion-title>
+        <ion-buttons slot="end">
+          <ion-menu-button color="primary"></ion-menu-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      
+      <ion-fab horizontal="end" vertical="bottom" edge slot="fixed" minio>
+        <ion-fab-button color="light" >
+          <ion-icon name="add-outline" color="primary"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="start">
+          <ion-button color="light" class="ion-no-margin" [routerLink]="['/register-retailer']" >소매처 등록</ion-button>
+        </ion-fab-list>
+      </ion-fab>
+
+      <!-- <ion-chip outline btn_down color="tertiary" class="ion-float-end">
+        <ion-label>주문서등록</ion-label>
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-chip> -->
+
+
+      <ion-tabs>
+        <ion-tab-bar slot="bottom">
+          <ion-tab-button tab="order">
+            <ion-icon name="reader-outline"></ion-icon>
+            <ion-label>주문</ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button tab="buy">
+            <ion-icon name="bag-handle-outline"></ion-icon>
+            <ion-label>사입</ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button (click)="goHome()">
+            <ion-icon name="arrow-redo-circle-outline"></ion-icon>
+          </ion-tab-button>
+
+          <ion-tab-button tab="calculate">
+            <ion-icon name="card-outline"></ion-icon>
+            <ion-label>정산</ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button tab="retailer">
+            <ion-icon name="file-tray-full-outline"></ion-icon>
+            <ion-label>소매처</ion-label>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+
+      <ion-img src="./assets/img/deli2.jpg"></ion-img>
+      <h6 class="ion-text-center">사입 전, 당일 주문서를 등록해주세요!</h6>
+      
+    </ion-content>
+  </div>
+</ion-app>

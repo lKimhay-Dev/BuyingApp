@@ -1,0 +1,25 @@
+<ion-content>
+    <ion-item>
+        <ion-icon name="list-outline" (click)="presentModal()" class="ion-margin-top"></ion-icon>
+        <ion-icon name="pencil-outline" [routerLink]="['/edit']" class="ion-margin-top"></ion-icon>
+        <ion-icon [routerLink]="['/search-tailer']" name="search-outline" slot="end"></ion-icon>
+    </ion-item>
+    <ion-list *ngIf="retailers.length > 0">
+        <ion-item *ngFor="let retailer of retailers | orderBy: sortBy: sortOpt" (click)="getDetail(retailer)">
+            <ion-label class="ion-text-start font_size ion-no-margin ion-no-padding">
+                <span text_underline>{{retailer.retailer_name}}</span>
+                <span *ngFor="let depo of retailer.depositors">&nbsp;/&nbsp;{{depo.name}}</span>
+                <p>
+                    <span text_color>기본값</span>
+                    <span>&nbsp;{{retailer.buying_fee | number }}원</span>
+                    <span text_color> &nbsp;(기본값)</span>
+                </p>
+            </ion-label>
+            <ion-label class="ion-text-end flex_none">
+                <ion-icon name="call-sharp"></ion-icon>
+                <ion-icon></ion-icon>
+                <ion-icon name="location-sharp" text_color></ion-icon>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

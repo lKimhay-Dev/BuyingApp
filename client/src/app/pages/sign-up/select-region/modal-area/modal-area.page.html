@@ -1,0 +1,20 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-row>
+      <ion-button (click)="closeModal()" expand="block" fill="clear" shape="round">
+        <ion-img  class="controler" src="./assets/img/icon_back.png" ></ion-img>
+      </ion-button>
+      <ion-title class="txt">주 사입 지역 선택</ion-title>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-radio-group >
+      <ion-item *ngFor="let area of stateBuyArea" (click)="selectArea($event)">
+        <ion-radio class="index" value={{area._id}} slot="start"></ion-radio>
+        <ion-label class="index_">{{area.area_ko}}</ion-label>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>

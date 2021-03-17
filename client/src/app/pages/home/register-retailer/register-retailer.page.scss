@@ -1,0 +1,43 @@
+.arow-back{
+    font-size: 25px;
+    font-weight: bold;
+}
+ion-title.info{
+    font-size: 18px;
+    font-weight: bold;
+    color: #4848f1;
+    width: 234px;
+    // height: 27px;
+    letter-spacing: -0.36px;
+}
+ion-label.info{
+    font-size: 14px;
+    color: #4848f1;
+    letter-spacing: -0.28px;
+    width: 255px;
+    height: 21px;
+}
+.btn{
+    letter-spacing: -0.28px;
+    font-size: 14px;
+    width: 103px;
+    height: 48px;
+}
+.btn-size{
+    letter-spacing: -0.28px;
+    font-size: 14px;
+    // --border-radius: 10px;
+    padding: 0 10px;
+    height: 48px;
+    position: fixed;
+    left: 0;
+    bottom: 15px;
+    width: 100%;
+}
+
+.label-size{
+    font-size: 16px;
+    letter-spacing: -0.32px;
+    width: 44px;
+    height: 24px;
+}

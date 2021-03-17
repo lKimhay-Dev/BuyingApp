@@ -1,0 +1,41 @@
+.my-custom-menu {
+  --width: 500px;
+}
+ion-title[info]{
+  font-size: 18px;
+  font-weight:bold;
+  color: rgb(72, 72, 241);
+  // margin-bottom: 15px;
+}
+p[info]{
+  font-size: 16px;
+  font-weight:bold;
+}
+
+ion-fab[minio] {
+  margin-bottom: 100px;
+}
+
+ion-avatar[smallImg] {
+  width: 60px;
+  height: 60px;
+  margin: 50px 0 10px 10px;
+}
+
+ion-title[padingName] {
+  margin: 50px 0 11px -11px;
+}
+
+p[padingName] {
+  font-size: 14px;
+  padding-top: 8px;
+}
+
+ion-icon[marginIconClose] {
+  margin: 0 18px 100px 0;
+  font-size: 23px;
+}
+
+ion-chip[btn_down]{
+  margin-top: 40px;
+}
